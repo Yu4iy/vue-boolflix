@@ -1,8 +1,8 @@
 <template>
 <header>
 	<div class="container">
-		<input type="text">
-		<button>Cerca</button>
+		<input v-model.trim = "inputSearch" type="text">
+		<button @click = "$emit('search', inputSearch)">Cerca</button>
 	</div>
 </header>
   
@@ -10,17 +10,22 @@
 
 <script>
 export default {
-
+data(){
+	return{
+		inputSearch:''
+	}
+}
 }
 </script>
 
 <style lang="scss" scoped>
 @import '@/styles/globals';
+@import '@/styles/variables';
 header{
 	display: flex;
 	justify-content: center;
 	padding: 1rem 0;
-	background-color: cadetblue;
+	background-color: $brandColor;
 	input{
 		width: 31.25rem;
 		height: 3.125rem;
