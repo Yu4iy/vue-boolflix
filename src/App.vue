@@ -3,35 +3,41 @@
     <Header
      @search = searchValue
     />
-    <ul v-for="(card, index) in result" :key= '`card-${index}`' >
-      <li>Titolo: {{card.title}}</li>
-      <li>Titolo: Originale:{{card.original_title}}</li>
-      <li>Lingua: {{card.original_language}}</li>
-      <li>Voto: {{card.vote_average}}</li>
-    </ul>
+    <div v-for="(card, index) in result" :key= '`card-${index}`'  >
+    <Card
+      :Titolo = card.title
+      :TitoloOriginale = card.original_title
+      :Lingua = card.original_language
+      :Voto = card.vote_average
+      
+    />
+
+    </div>
+   
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import Header from './components/Header.vue'
+import Card from './components/Card.vue'
 
 export default {
   name: 'App',
   components: {
-    Header
+    Header,
+    Card
   },
 
 
   data(){
     return{
     inputValue:'',
-    result:[]
+    result:[],
+    lang:["en", "it"]
     }
   },
-  created(){
-    
-  },
+ 
 
   methods:{
     searchValue(elem){
@@ -60,7 +66,5 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
- 
-}
+
 </style>
