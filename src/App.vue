@@ -4,7 +4,11 @@
      @search = searchValue
     />
     <main>
-      <CardList :list = "movieList"/>
+      <CardList 
+      :movieList = movieList
+      :serialList = serialList
+      />
+      
     </main>
  
    
@@ -27,6 +31,7 @@ export default {
   data(){
     return{
     movieList:[],
+    serialList:[],
     lang:["en", "it"]
     }
   },
@@ -45,13 +50,24 @@ export default {
         }
         )
         .then(res => {this.movieList =   res.data.results})
+
+          axios
+        .get('https://api.themoviedb.org/3/search/tv',{
+          params: {
+            api_key: 'bcb47ae21b247fb462aab053c0af2cb3',
+            query: elem,
+            language: 'it-IT'
+          }
+        }
+        )
+        .then(res => {this.serialList =   res.data.results})
       }
       
-    },
 
-    getMusicList(){
-  
-    },    
+      
+    }
+
+     
 
     
   }

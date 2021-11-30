@@ -1,12 +1,26 @@
 <template>
 	<section>
-		<div v-for="card in list" :key= 'card.id'  >
-			<Card
-				:Titolo = card.title
-				:TitoloOriginale = card.original_title
-				:Lingua = card.original_language
-				:Voto = card.vote_average
-			/>
+		<div>
+			<div v-for="movieCard in movieList" :key= 'movieCard.id'  >
+				<Card
+					:Titolo = movieCard.title
+					:TitoloOriginale = movieCard.original_title
+					:Lingua = movieCard.original_language
+					:Voto = movieCard.vote_average
+				/>
+			</div>
+		</div>
+		
+
+		<div>
+			<div v-for="serialCard in serialList" :key= 'serialCard.id'  >
+				<Card
+					:Titolo = serialCard.name
+					:TitoloOriginale = serialCard.original_name
+					:Lingua = serialCard.original_language
+					:Voto = serialCard.vote_average
+				/>
+			</div>
 		</div>
 	</section>
 </template>
@@ -22,11 +36,14 @@ export default {
 	},
  
 	props:{
-		list:Array,
+		movieList:Array,
+		serialList:Array,
 	}
 }
 </script>
 
-<style>
-
-</style> 
+<style lang="scss" scoped>
+section{
+	display: flex;
+}
+</style>
