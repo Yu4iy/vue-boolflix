@@ -3,37 +3,30 @@
     <Header
      @search = searchValue
     />
-    <div v-for="(card, index) in result" :key= '`card-${index}`'  >
-    <Card
-      :Titolo = card.title
-      :TitoloOriginale = card.original_title
-      :Lingua = card.original_language
-      :Voto = card.vote_average
-      
-    />
-
-    </div>
+    <main>
+      <CardList :list = "movieList"/>
+    </main>
+ 
    
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import Header from './components/Header.vue'
-import Card from './components/Card.vue'
+import Header from '@/components/Header.vue'
+import CardList from '@/components/CardList.vue'
 
 export default {
   name: 'App',
   components: {
     Header,
-    Card
+    CardList
   },
 
 
   data(){
     return{
-    inputValue:'',
-    result:[],
+    movieList:[],
     lang:["en", "it"]
     }
   },
@@ -41,23 +34,23 @@ export default {
 
   methods:{
     searchValue(elem){
-      this.inputValue = elem
-      this.getMusicList()
+      if(elem !== ''){
+      axios
+        .get('https://api.themoviedb.org/3/search/movie',{
+          params: {
+            api_key: 'bcb47ae21b247fb462aab053c0af2cb3',
+            query: elem,
+            language: 'it-IT'
+          }
+        }
+        )
+        .then(res => {this.movieList =   res.data.results})
+      }
+      
     },
 
     getMusicList(){
-      axios
-      .get('https://api.themoviedb.org/3/search/movie',{
-        params:{
-          api_key: 'bcb47ae21b247fb462aab053c0af2cb3',
-          query:`${this.inputValue}`,
-          language: 'it-IT'
-        }
-      }
-      )
-      .then(res => {this.result =   res.data.results})
-      
-      
+  
     },    
 
     
