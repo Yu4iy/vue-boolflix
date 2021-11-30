@@ -3,6 +3,7 @@
 		<div>
 			<div v-for="movieCard in movieList" :key= 'movieCard.id'  >
 				<Card
+					:img = movieCard.poster_path
 					:Titolo = movieCard.title
 					:TitoloOriginale = movieCard.original_title
 					:Lingua = movieCard.original_language
@@ -15,10 +16,12 @@
 		<div>
 			<div v-for="serialCard in serialList" :key= 'serialCard.id'  >
 				<Card
+					:img = serialCard.poster_path
 					:Titolo = serialCard.name
 					:TitoloOriginale = serialCard.original_name
 					:Lingua = serialCard.original_language
 					:Voto = serialCard.vote_average
+					
 				/>
 			</div>
 		</div>
@@ -45,5 +48,6 @@ export default {
 <style lang="scss" scoped>
 section{
 	display: flex;
+	justify-content: center;
 }
 </style>

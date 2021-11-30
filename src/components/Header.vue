@@ -1,7 +1,7 @@
 <template>
 <header>
 	<div class="container">
-		<input v-model.trim = "inputSearch" type="text">
+		<input @keyup.enter= "$emit('search', inputSearch)" v-model.trim = "inputSearch" type="text">
 		<button @click = "$emit('search', inputSearch)">Cerca</button>
 	</div>
 </header>
