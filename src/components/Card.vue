@@ -7,9 +7,13 @@
 			:alt="Titolo"
 			>
 			</li>
+      <li>Titolo:{{Titolo}}</li>
       <li>Titolo Originale:{{TitoloOriginale}}</li>
-      <li v-if="flag" >Lingua: <img class="lang" :src="require(`@/assets/${Lingua}.png`)" alt=""></li>
-      <li v-else>Lingua:{{Lingua}}</li>
+      <li>
+			Lingua: 
+			<img v-if="flag" class="lang" :src="require(`@/assets/${Lingua}.png`)" alt="">
+			<span v-else >Lingua:{{Lingua}}</span>
+      </li>
       <li>Voto: {{Voto}}</li>
     </ul>
 </div>
