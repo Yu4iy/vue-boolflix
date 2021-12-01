@@ -75,5 +75,8 @@ export default {
 </script>
 
 <style lang="scss">
-
+@import "@/styles/globals.scss";
+main{
+  background:   #201a1a;
+}
 </style>

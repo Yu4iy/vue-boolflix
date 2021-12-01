@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<div>
+		<div class="row">
 			<div v-for="movieCard in movieList" :key= 'movieCard.id'  >
 				<Card
 					:img = movieCard.poster_path
@@ -13,8 +13,8 @@
 		</div>
 		
 
-		<div>
-			<div v-for="serialCard in serialList" :key= 'serialCard.id'  >
+		<div class="row">
+			<div  v-for="serialCard in serialList" :key= 'serialCard.id'  >
 				<Card
 					:img = serialCard.poster_path
 					:Titolo = serialCard.name
@@ -48,6 +48,17 @@ export default {
 <style lang="scss" scoped>
 section{
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	.row{
+		
+		display: flex;
+		overflow:hidden
+		div{
+			margin: 0 5px;
+		}
+		
+	}
+
+
 }
 </style>
