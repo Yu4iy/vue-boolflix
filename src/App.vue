@@ -8,7 +8,6 @@
       :movieList = movieList
       :serialList = serialList
       />
-      
     </main>
  
    
@@ -24,7 +23,7 @@ export default {
   name: 'App',
   components: {
     Header,
-    CardList
+    CardList,
   },
 
 
@@ -76,7 +75,9 @@ export default {
 
 <style lang="scss">
 @import "@/styles/globals.scss";
+@import '@/styles/variables';
+
 main{
-  background:   #201a1a;
+  background:  $colorBg;
 }
 </style>

@@ -2,7 +2,7 @@
 <header>
 	<div class="container">
 		<ul>
-		<img src="@/assets/log.png" alt="">
+			<img src="@/assets/log.png" alt="">
 			<li>Home</li>
 			<li>SerieTV</li>
 			<li>Originali</li>
@@ -10,8 +10,7 @@
 			<li>Download</li>
 		</ul>
 		<div class="search">
-			<input :class="filter.active? 'active' : '' "  @keyup.enter= "$emit('search', inputSearch)" v-model.trim = "inputSearch" type="text">
-			<button :class="filter.active? 'active' : '' " @click = "filter.active = !filter.active">Cerca</button>
+			<input  @keyup.enter= "$emit('search', inputSearch)" v-model.trim = "inputSearch" type="text" placeholder="Search">
 		</div>
 	</div>
 </header>
@@ -23,9 +22,7 @@ export default {
 data(){
 	return{
 		inputSearch:'',
-		filter:{
-			active:false
-		}
+		
 	}
 }
 }
@@ -34,11 +31,12 @@ data(){
 <style lang="scss" scoped>
 @import '@/styles/globals';
 @import '@/styles/variables';
+
 header{
 	padding: 10px;
 	background-color: #000000;
 	z-index: 3;
-	color: #ffffff;;
+	color: $whitheColor;
 	text-transform: uppercase;
 	div{
 		display: flex;
@@ -52,7 +50,13 @@ header{
 			flex-wrap: wrap;
 			li{
 				margin: 0 1rem 0 0;
-				
+				font-size: .625rem;
+				transition: 0.2s linear;
+				color: $colorLightGray;
+				cursor: pointer;
+				&:hover{
+					color: $brandColor;
+				}
 				&:last-child{
 					margin: 0;
 
@@ -69,38 +73,15 @@ header{
 		position: absolute;
 		right: 0;
 		input{
-			width: 0;
-			height: 2rem;
-			border-bottom-left-radius: 10px;
-			border-top-left-radius: 10px;
 			border: none;
-			transition: width linear 0.3s;
-			background: rgb(180, 178, 178);
+			background: transparent;
+			border-bottom: 2px solid $colorLightGray;
+			color: $colorLightGray;
 			&:focus{
-				outline: none;
-				background:rgb(255, 255, 255);
-
+				outline: transparent;
+				border-bottom: 2px solid $brandColor;
 			}
-			&.active{
-				width: 6.25rem;
-			}
-
-		}
-		button{
-			font-size: 10px;
-			height: 2.2rem;
-			width: 2.2rem;
-			border: none;
-			border-top-right-radius: 30%;
-			border-bottom-right-radius: 30%;
-			border-top-left-radius: 10%;
-			border-bottom-left-radius: 10%;
-			left: 20px;
-			background: rgb(255, 255, 255);
-			transition: linear 0.2s;
-			&.active{
-				background: rgb(110, 107, 107);
-			}
+			
 		}
 	}
 }
