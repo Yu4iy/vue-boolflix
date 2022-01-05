@@ -4,10 +4,8 @@
 		<ul>
 			<img src="@/assets/log.png" alt="">
 			<li>Home</li>
-			<li>SerieTV</li>
-			<li>Originali</li>
-			<li>Agiunti di Recente</li>
-			<li>Download</li>
+			<li>Serials</li>
+			<li>Movies</li>
 		</ul>
 		<div class="search">
 			<input  @keyup.enter= "$emit('search', inputSearch)" v-model.trim = "inputSearch" type="text" placeholder="Search">
