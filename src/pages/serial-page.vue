@@ -10,8 +10,14 @@
 					:src="`https://image.tmdb.org/t/p/original/${serials.poster_path}`" 
 					alt=""
 					>
-
-					<h2 class="card__title">learn More</h2>
+					<div class="card__info">
+						<h2 class="card__title">{{serials.name}}</h2>
+						<div class="card__vote">{{serials.vote_average}}</div>
+						
+					</div>	
+					<h2 class="card__more">learn More</h2>
+					
+					
 				</div>
 			<!-- <img 
 			:src="`https://image.tmdb.org/t/p/original/${serialList.poster_path}`" 
@@ -99,6 +105,7 @@ methods:{
 			border: 3px dotted rgba(194, 25, 25, 0.589);
 			transition: linear 0.1s;
 			position: relative;
+			overflow: hidden;
 		&img{
 		width: 100%;
 		height: 100%;
@@ -117,20 +124,45 @@ methods:{
 			
 		}
 		&:hover::after{
-			background: rgba(0, 0, 0, 0.719);
+			background: rgba(0, 0, 0, 0.822);
 
 			
 		}
 		&:hover{
 			transform: scale(1.05);
 		}
-		&:hover .card__title{
+		&:hover .card__more{
 				transform: scale(1);
-				
 			}
+		&:hover .card__info{
+				transform: scale(1);
+				top: 40px;
+			}	
+		.card__info{
+			position: absolute;
+			top: -80px;
+			z-index: 6;
+			font: 700;
+			text-align: center;
+			padding: 0 5px;
+			transform: scale(0);
+			transition: top linear 0.2s;
+
+			.card__title{
+				color: #fff;
+				font-size: 25;
+				text-transform: uppercase;
+				margin-bottom: 40px;
+			}
+			.card__vote{
+				font-size: 60px;
+				line-height: 70px;
+				color: rgb(248, 248, 0);
+			}
+
+		}
 		
-		
-		.card__title{
+		.card__more{
 			z-index: 3;
 			position: absolute;
 			bottom: 10px;
@@ -148,8 +180,8 @@ methods:{
 			transition: linear 0.2s;
 			&:hover{
 				border: 4px solid rgb(255, 0, 0);
-				background: rgba(255, 0, 0, 0.308);
-				color: rgb(255, 255, 255);
+				background: rgba(0, 0, 0, 0.308);
+				color: rgb(255, 0, 0);
 				
 			}
 
