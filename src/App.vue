@@ -85,7 +85,8 @@ export default {
 @import '@/styles/variables';
 
 #app{
-  background: rgb(48, 38, 38);
+  background: linear-gradient(0deg, rgba(55,25,25,1) 0%, rgba(0,0,0,1) 100%);
   height: 100%;
+  min-height: 100vh;
 }
 </style>

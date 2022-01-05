@@ -3,7 +3,7 @@
 		<Header
 			@search = searchValue
 		/>
-		<main class="main-serials">
+		<main class="main-serials" v-if='serialList.length > 0  '>
 			<div class="img-wraper">
 				<div class="card" v-for="(serials, index) in serialList" :key="index">
 					<img 
@@ -13,34 +13,17 @@
 					<div class="card__info">
 						<h2 class="card__title">{{serials.name}}</h2>
 						<div class="card__vote">{{serials.vote_average}}</div>
-						
 					</div>	
 					<h2 class="card__more">learn More</h2>
-					
-					
 				</div>
-			<!-- <img 
-			:src="`https://image.tmdb.org/t/p/original/${serialList.poster_path}`" 
-			:alt="" -->
-			
-			<!-- <div class="card">
-				<div class="inf" >
-					<h3>Titolo:{{Titolo}}</h3>
-					<h4>Titolo Originale:{{TitoloOriginale}}</h4>
-
-					<div class="rating">
-						<div class="star2">Voto: <i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
-						
-						<div class="star">
-							Voto: <i v-for="(star, index) in getRating" :key="index" class="fas fa-star"></i>
-						</div>
-					</div>
-					<p>{{info}}</p>
-				</div>
-			</div> -->
-		</div>
+			</div>
 		</main>
-		
+		<div class="title" v-else>
+			<svg xmlns="http://www.w3.org/2000/svg" width="66" height="66" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+				<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+			</svg>
+			<h3 class="title__text">Inizia la tua ricerca!</h3>
+		</div>
 	</div>
 </template>
 
@@ -57,6 +40,7 @@ components: {
 data(){
 	return{
 	serialList:[],
+	watch:[]
 	}
   },	
 methods:{
@@ -75,9 +59,9 @@ methods:{
           .then(res => {this.serialList =   res.data.results})
         }
         
+      },
 
-        
-      }
+	
 
      
 
@@ -93,9 +77,12 @@ methods:{
 
 .img-wraper{
 	display: flex;
+	justify-content: center;
 	flex-wrap: wrap;
 	.card{
 			flex: 1 0 calc(20% - 30px);
+			max-width: 250px;
+			max-height: 400px;
 			margin: 15px;
 			position: relative;
 			background: rgba(88, 16, 16, 0.377);
@@ -190,5 +177,18 @@ methods:{
 
 
 }
+.title{
+	display: flex;
+	height: 70vh;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+	.title__text{
+		font-size: 3.5rem;
+		text-transform: uppercase;
+		margin-left: 20px;
+	}
 
+
+}
 </style>
