@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+  <!--
     <Header
      @search = searchValue
     />
@@ -7,23 +8,26 @@
       <CardList 
       :movieList = movieList
       :serialList = serialList
+
       />
+      
     </main>
- 
-   
+  -->
+   <startPage/>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import Header from '@/components/Header.vue'
-import CardList from '@/components/CardList.vue'
+// import Header from '@/components/Header.vue'
+import startPage from '@/components/start-page.vue'
 
 export default {
   name: 'App',
   components: {
-    Header,
-    CardList,
+    // Header,
+    // CardList,
+    startPage
   },
 
 
@@ -77,7 +81,7 @@ export default {
 @import "@/styles/globals.scss";
 @import '@/styles/variables';
 
-main{
-  background:  $colorBg;
+#app{
+  
 }
 </style>

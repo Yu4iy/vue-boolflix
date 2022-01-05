@@ -59,10 +59,10 @@ export default {
 			options: {
 			currentPage: 0,
 			tracking: false,
-			thresholdDistance: 100,
+			thresholdDistance: 1000,
 			thresholdTime: 300,
 			infinite: 0,
-			slidesToScroll: 4,
+			slidesToScroll: 1,
 			loop: true
      }
 		}
