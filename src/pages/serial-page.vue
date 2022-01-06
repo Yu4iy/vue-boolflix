@@ -26,7 +26,7 @@
 				<svg xmlns="http://www.w3.org/2000/svg" width="66" height="66" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
 					<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
 				</svg>
-				<h3 class="title__text">Inizia la tua ricerca!</h3>
+				<h3 class="title__text">SerieTV!</h3>
 			</div>
 		</template>
 
@@ -35,14 +35,22 @@
 		<div v-else @mouseover="setsBg(serialItem)"  class="more-info-modal" id="more-info-modal" ref="tests">
 			<div class="more-info-modal__wraper">
 				<div class="container">
-					<h2 class="more-info-modal__name">{{serialItem.name}}</h2>
-					<div class="more-info-modal__rating"><span>imdb</span> {{serialItem.vote_average}}</div>
-					<p class="more-info-modal__description">{{serialItem.overview}}</p>
+					<ul @click="showInfo = !showInfo">
+						<li class="more-info-modal__name">{{serialItem.name}}</li>
+						<li class="more-info-modal__rating"><span>imdb</span> {{serialItem.vote_average}}</li>
+						<li><p class="more-info-modal__description">{{serialItem.overview}}</p></li>
+						<li class="more-info-modal__year">Anno: {{year}}</li>
+						<li class="more-info-modal__lang">Lingua: {{serialItem.original_language}}</li>
+					</ul>
 
 					
 				</div>
 				
 			</div>
+			<svg @click="showInfo = !showInfo" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="red" class=" close bi bi-x-circle" viewBox="0 0 16 16">
+				<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+				<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+			</svg>
 		</div>
 	</div>
 </template>
@@ -63,10 +71,11 @@ data(){
 	watch:[],
 	serialItem:{},
 	showInfo:true,
-
+	year:null
 
 	}
   },
+
 
 methods:{
       searchValue(elem){
@@ -87,13 +96,20 @@ methods:{
       },
 	getItem(index){
 		this.serialItem = this.serialList[index]
+		this.getYear()
 	},
 
 	setsBg(serialItem){
 		this.$refs.tests.style.background = `url(https://image.tmdb.org/t/p/original/${serialItem.backdrop_path})`;
 		this.$refs.tests.style.backgroundSize = 'cover';
-	}
-
+	},
+	getYear(){
+		this.year = this.serialItem.first_air_date.split('', 4).join('');
+	},
+	closeModal(){
+	
+	return this.showInfo = !this.showInfo;
+}
      
 
     
@@ -249,7 +265,7 @@ methods:{
 	}
 
 	.more-info-modal__name{
-		margin-bottom: 15px;
+		font-size: 2rem;
 	}
 	.more-info-modal__description{
 		font-size: .795rem;
@@ -263,6 +279,23 @@ methods:{
 			text-transform: uppercase;
 
 		}
+	}
+	li{
+		font-size: 15px;
+		margin-bottom: 10px;
+
+	}
+	.close{
+		position: absolute;
+		top: 20px;
+		right: 50px;
+		z-index: 20;
+		transition: linear 0.1s;
+		cursor: pointer;
+		&:hover{
+			transform: scale(1.3);
+		}
+
 	}
 
 
