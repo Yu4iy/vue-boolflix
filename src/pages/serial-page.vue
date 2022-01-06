@@ -1,28 +1,48 @@
 <template>
 	<div class="serial-page">
 		<Header
+			class="f"
 			@search = searchValue
 		/>
-		<main class="main-serials" v-if='serialList.length > 0  '>
-			<div class="img-wraper">
-				<div class="card" v-for="(serials, index) in serialList" :key="index">
-					<img 
-					:src="`https://image.tmdb.org/t/p/original/${serials.poster_path}`" 
-					alt=""
-					>
-					<div class="card__info">
-						<h2 class="card__title">{{serials.name}}</h2>
-						<div class="card__vote">{{serials.vote_average}}</div>
-					</div>	
-					<h2 class="card__more">learn More</h2>
+		<template v-if = showInfo>
+			<main class="main-serials" v-if='serialList.length > 0  '>
+				<div class="img-wraper">
+					<div @click="getItem(index)" class="card" v-for="(serials, index) in serialList" :key="index">
+						<img 
+						:src="`https://image.tmdb.org/t/p/original/${serials.poster_path}`" 
+						alt=""
+						>
+						
+						<div class="card__info" >
+							<h2 class="card__title">{{serials.name}}</h2>
+							<div class="card__vote">{{serials.vote_average}}</div>
+						</div>	
+						<h2  @click="showInfo = !showInfo"  class="card__more">learn More</h2>
+					</div>
 				</div>
+			</main>
+			
+			<div class="title" v-else>
+				<svg xmlns="http://www.w3.org/2000/svg" width="66" height="66" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+					<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+				</svg>
+				<h3 class="title__text">Inizia la tua ricerca!</h3>
 			</div>
-		</main>
-		<div class="title" v-else>
-			<svg xmlns="http://www.w3.org/2000/svg" width="66" height="66" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-				<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-			</svg>
-			<h3 class="title__text">Inizia la tua ricerca!</h3>
+		</template>
+
+			
+
+		<div v-else @mouseover="setsBg(serialItem)"  class="more-info-modal" id="more-info-modal" ref="tests">
+			<div class="more-info-modal__wraper">
+				<div class="container">
+					<h2 class="more-info-modal__name">{{serialItem.name}}</h2>
+					<div class="more-info-modal__rating"><span>imdb</span> {{serialItem.vote_average}}</div>
+					<p class="more-info-modal__description">{{serialItem.overview}}</p>
+
+					
+				</div>
+				
+			</div>
 		</div>
 	</div>
 </template>
@@ -40,9 +60,14 @@ components: {
 data(){
 	return{
 	serialList:[],
-	watch:[]
+	watch:[],
+	serialItem:{},
+	showInfo:true,
+
+
 	}
-  },	
+  },
+
 methods:{
       searchValue(elem){
         if(elem !== ''){
@@ -60,8 +85,14 @@ methods:{
         }
         
       },
+	getItem(index){
+		this.serialItem = this.serialList[index]
+	},
 
-	
+	setsBg(serialItem){
+		this.$refs.tests.style.background = `url(https://image.tmdb.org/t/p/original/${serialItem.backdrop_path})`;
+		this.$refs.tests.style.backgroundSize = 'cover';
+	}
 
      
 
@@ -74,26 +105,28 @@ methods:{
 <style lang="scss" scoped>
 @import '@/styles/globals';
 @import '@/styles/variables';
-
+.serial-page{
+	position: relative;
+}
 .img-wraper{
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
 	.card{
-			flex: 1 0 calc(20% - 30px);
-			max-width: 250px;
-			max-height: 400px;
-			margin: 15px;
-			position: relative;
-			background: rgba(88, 16, 16, 0.377);
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			border: 3px dotted rgba(194, 25, 25, 0.589);
-			transition: linear 0.1s;
-			position: relative;
-			overflow: hidden;
-		&img{
+		flex: 1 0 calc(20% - 30px);
+		max-width: 250px;
+		max-height: 400px;
+		margin: 15px;
+		position: relative;
+		background: rgba(88, 16, 16, 0.377);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 3px dotted rgba(194, 25, 25, 0.589);
+		transition: linear 0.1s;
+		position: relative;
+		overflow: hidden;
+		img{
 		width: 100%;
 		height: 100%;
 		height: auto;	
@@ -191,4 +224,50 @@ methods:{
 
 
 }
+.more-info-modal{
+	width: 100%;
+	height: calc(100vh - 91px);
+	position: relative;
+	padding: 40px 0 0 0 ;
+	&::after{
+		content: '';
+		background: linear-gradient(90deg, rgba(4, 4, 4, 0.918) 50%, rgba(18, 18, 18, 0.76) 66%, rgba(0,0,0,0) 100%);
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 0;
+
+
+	}
+	.more-info-modal__wraper{
+		position: relative;
+		max-width:600px;
+		color: #fff;
+		z-index: 6;
+	}
+
+	.more-info-modal__name{
+		margin-bottom: 15px;
+	}
+	.more-info-modal__description{
+		font-size: .795rem;
+	}
+	.more-info-modal__rating{
+		margin-bottom: 10px;
+		span{
+			border: 1px solid gray ;
+			padding: 1px  2px;
+			border-radius: 5px;
+			text-transform: uppercase;
+
+		}
+	}
+
+
+}
+	
+
+
 </style>

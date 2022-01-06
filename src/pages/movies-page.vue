@@ -11,7 +11,7 @@
 					alt=""
 					>
 					<div class="card__info">
-						<h2 class="card__title">{{movie.name}}</h2>
+						<h2 class="card__title">{{movie.title}}</h2>
 						<div class="card__vote">{{movie.vote_average}}</div>
 					</div>	
 					<h2 class="card__more">learn More</h2>

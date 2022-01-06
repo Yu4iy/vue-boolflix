@@ -3,9 +3,9 @@
 	<div class="container">
 		<ul>
 			<img src="@/assets/log.png" alt="">
-			<li>Home</li>
-			<li>Serials</li>
-			<li>Movies</li>
+			<li @click="$router.push('/')">Home</li>
+			<li @click="$router.push('serials')">Serials</li>
+			<li @click="$router.push('movies')">Movies</li>
 		</ul>
 		<div class="search">
 			<input  @keyup.enter= "$emit('search', inputSearch)" v-model.trim = "inputSearch" type="text" placeholder="Search">
@@ -48,7 +48,7 @@ header{
 			flex-wrap: wrap;
 			li{
 				margin: 0 1rem 0 0;
-				font-size: .625rem;
+				font-size: 1.1 25rem;
 				transition: 0.2s linear;
 				color: $colorLightGray;
 				cursor: pointer;
