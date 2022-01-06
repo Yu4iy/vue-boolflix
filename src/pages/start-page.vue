@@ -1,10 +1,10 @@
 <template>
   <div class="start-page">
 	<img class="start-page__logo" src="@/assets/log.png" alt="">
-	<button v-show="startBtn" class="start-page__btn" @click="startBtn = !startBtn"  >START SEARCH</button>
+	<button v-show="startBtn" class="start-page__btn" @click="startBtn = !startBtn"  >INIZIA LA RICERCA</button>
 	<div class="start-page__links">
-		<a v-show="!startBtn" @click="$router.push('serials')" href="">Serial</a>
-		<a v-show="!startBtn" @click="$router.push('movies')" href="">Movies</a>
+		<a v-show="!startBtn" @click="$router.push('serials')" href="">SerieTV</a>
+		<a v-show="!startBtn" @click="$router.push('movies')" href="">Films</a>
 	</div>
   </div>
 </template>

@@ -1,9 +1,10 @@
+
+
 <template>
 	<div class="serial-page">
-		<Header
-			class="f"
-			@search = searchValue
-		/>
+		
+		<Header @search = searchValue />
+
 		<template v-if = showInfo>
 			<main class="main-serials" v-if='serialList.length > 0  '>
 				<div class="img-wraper">
@@ -23,9 +24,6 @@
 			</main>
 			
 			<div class="title" v-else>
-				<svg xmlns="http://www.w3.org/2000/svg" width="66" height="66" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-					<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-				</svg>
 				<h3 class="title__text">SerieTV!</h3>
 			</div>
 		</template>
@@ -35,7 +33,7 @@
 		<div v-else @mouseover="setsBg(serialItem)"  class="more-info-modal" id="more-info-modal" ref="tests">
 			<div class="more-info-modal__wraper">
 				<div class="container">
-					<ul @click="showInfo = !showInfo">
+					<ul>
 						<li class="more-info-modal__name">{{serialItem.name}}</li>
 						<li class="more-info-modal__rating"><span>imdb</span> {{serialItem.vote_average}}</li>
 						<li><p class="more-info-modal__description">{{serialItem.overview}}</p></li>
@@ -106,10 +104,7 @@ methods:{
 	getYear(){
 		this.year = this.serialItem.first_air_date.split('', 4).join('');
 	},
-	closeModal(){
-	
-	return this.showInfo = !this.showInfo;
-}
+
      
 
     
@@ -234,7 +229,6 @@ methods:{
 	color: #fff;
 	.title__text{
 		font-size: 3.5rem;
-		text-transform: uppercase;
 		margin-left: 20px;
 	}
 
