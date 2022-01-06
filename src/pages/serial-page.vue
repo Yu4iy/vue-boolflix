@@ -12,7 +12,9 @@
 						<img 
 						:src="`https://image.tmdb.org/t/p/original/${serials.poster_path}`" 
 						alt=""
+						v-if="serials.poster_path !== null"
 						>
+						<img v-else src="../assets/img-not-found.png" alt="">
 						
 						<div class="card__info" >
 							<h2 class="card__title">{{serials.name}}</h2>
@@ -34,7 +36,7 @@
 			<div class="more-info-modal__wraper">
 				<div class="container">
 					<ul>
-						<li class="more-info-modal__name">{{serialItem.name}}</li>
+						<li class="more-info-modal__name">{{serialItem.name||serialItem.original_name}}</li>
 						<li class="more-info-modal__rating"><span>imdb</span> {{serialItem.vote_average}}</li>
 						<li><p class="more-info-modal__description">{{serialItem.overview}}</p></li>
 						<li class="more-info-modal__year">Anno: {{year}}</li>

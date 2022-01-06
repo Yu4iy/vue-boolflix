@@ -71,13 +71,15 @@ header{
 		position: absolute;
 		right: 0;
 		input{
-			border: none;
+			border-radius: 20px;
+			padding: 5px;
 			background: transparent;
-			border-bottom: 2px solid $colorLightGray;
+			border: 2px solid $colorLightGray;
 			color: $colorLightGray;
 			&:focus{
 				outline: transparent;
-				border-bottom: 2px solid $brandColor;
+				border: 2px solid $brandColor;
+
 			}
 			
 		}
