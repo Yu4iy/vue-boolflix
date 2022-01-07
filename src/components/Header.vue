@@ -8,7 +8,7 @@
 			<li @click="$router.push('movies')">Movies</li>
 		</ul>
 		<div class="search">
-			<input  @keyup.enter= "$emit('search', inputSearch)" v-model.trim = "inputSearch" type="text" placeholder="Search">
+			<input  @keyup.enter= "$emit('search', inputSearch)" v-model.trim = "inputSearch" type="text" ref="input" placeholder="Search">
 		</div>
 	</div>
 </header>
@@ -20,8 +20,11 @@ export default {
 data(){
 	return{
 		inputSearch:'',
-		
 	}
+},
+
+methods:{
+	
 }
 }
 </script>

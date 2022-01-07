@@ -9,18 +9,6 @@
 			<main class="main-serials" v-if='serialList.length > 0  '>
 				<div class="img-wraper">
 					<div @click="getItem(index)" class="card-inner" v-for="(serials, index) in serialList" :key="index">
-						<!-- <img 
-						:src="`https://image.tmdb.org/t/p/original/${serials.poster_path}`" 
-						alt=""
-						v-if="serials.poster_path !== null"
-						>
-						<img v-else src="../assets/img-not-found.png" alt="">
-						
-						<div class="card__info" >
-							<h2 class="card__title">{{serials.name}}</h2>
-							<div class="card__vote">{{serials.vote_average}}</div>
-						</div>	
-						<h2  @click="showInfo = !showInfo"  class="card__more">learn More</h2> -->
 						<Card
 							:img = serials.poster_path
 							:title = serials.name
