@@ -21,6 +21,7 @@
 			
 			<div class="title" v-else>
 				<h3 class="title__text">Films!</h3>
+				<div v-show="badResult">SCUSA NON ABBIAMO TROVATO NIENTE</div>
 			</div>
 		</template>
 
@@ -67,7 +68,8 @@ data(){
 	watch:[],
 	filmItem:{},
 	showInfo:true,
-	year:null
+	year:null,
+	badResult:false
 
 	}
   },
@@ -86,7 +88,12 @@ methods:{
             }
           }
           )
-          .then(res => {this.filmList =   res.data.results})
+          .then(res => {
+		this.filmList =   res.data.results
+		if(this.filmList == 0){
+				this.badResult = true
+			}   
+		})
         }
         
       },
@@ -226,7 +233,8 @@ methods:{
 }
 .title{
 	display: flex;
-	height: 70vh;
+	flex-direction: column;
+	height: 90vh;
 	justify-content: center;
 	align-items: center;
 	color: #fff;

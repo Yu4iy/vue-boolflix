@@ -22,6 +22,7 @@
 			
 			<div class="title" v-else>
 				<h3 class="title__text">SerieTV!</h3>
+				<div v-show="badResult">SCUSA NON ABBIAMO TROVATO NIENTE</div>
 			</div>
 		</template>
 
@@ -68,8 +69,8 @@ data(){
 	watch:[],
 	serialItem:{},
 	showInfo:true,
-	year:null
-
+	year:null,
+	badResult:false
 	}
   },
 
@@ -87,9 +88,13 @@ methods:{
             }
           }
           )
-          .then(res => {this.serialList =   res.data.results})
-        }
-        
+          .then(res => {this.serialList =   res.data.results
+		if(this.serialList == 0){
+				this.badResult = true
+			}   
+		})
+		}
+
       },
 	getItem(index){
 		this.serialItem = this.serialList[index]
@@ -133,7 +138,8 @@ methods:{
 }
 .title{
 	display: flex;
-	height: 70vh;
+	flex-direction: column;
+	height: 90vh;
 	justify-content: center;
 	align-items: center;
 	color: #fff;
@@ -148,7 +154,7 @@ methods:{
 	width: 100%;
 	height: 100vh;
 	position: relative;
-	padding: 40px 0 0 0 ;
+	padding: 141px 0 0 0;
 	&::after{
 		content: '';
 		background: linear-gradient(90deg, rgba(4, 4, 4, 0.918) 50%, rgba(18, 18, 18, 0.76) 66%, rgba(0,0,0,0) 100%);
@@ -191,7 +197,7 @@ methods:{
 	}
 	.close{
 		position: absolute;
-		top: 20px;
+		top: 120px;
 		right: 50px;
 		z-index: 20;
 		transition: linear 0.1s;
