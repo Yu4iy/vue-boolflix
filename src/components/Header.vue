@@ -2,10 +2,10 @@
 <header>
 	<div class="container">
 		<ul>
-			<img src="@/assets/log.png" alt="">
+			<img src="@/assets/log.png" alt=""> 
 			<li @click="$router.push('/')">Home</li>
-			<li @click="$router.push('serials')">Serials</li>
-			<li @click="$router.push('movies')">Movies </li>
+			<li @click="$router.push('serials')">SerieTV</li>
+			<li @click="$router.push('movies')">Films </li>
 		</ul>
 		<div class="search">
 			<input  @keyup.enter= "$emit('search', inputSearch) ,clearInput()" v-model.trim = "inputSearch" type="text" ref="input" placeholder="Search">

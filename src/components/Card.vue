@@ -12,7 +12,7 @@
 		<div class="card__info" >
 			<h2 class="card__title">{{title}}</h2>
 		</div>	
-		<h2  @click="$emit('closeModal')"  class="card__more">learn More</h2>
+		<h2  @click="$emit('closeModal')"  class="card__more">Scopri di più</h2>
 
 	</div>
 </template>
