@@ -8,8 +8,8 @@
 		<template v-if = showInfo>
 			<main class="main-serials" v-if='filmList.length > 0  '>
 				<div class="img-wraper">
-					<div @click="getItem(index)" class="card" v-for="(film, index) in filmList" :key="index">
-						<img 
+					<div @click="getItem(index)" class="card-inner" v-for="(film, index) in filmList" :key="index">
+						<!-- <img 
 						:src="`https://image.tmdb.org/t/p/original/${film.poster_path}`" 
 						alt=""
 						>
@@ -17,7 +17,14 @@
 							<h2 class="card__title">{{film.title}}</h2>
 							<div class="card__vote">{{film.vote_average}}</div>
 						</div>	
-						<h2  @click="showInfo = !showInfo"  class="card__more">learn More</h2>
+						<h2  @click="showInfo = !showInfo"  class="card__more">learn More</h2> -->
+						<Card
+							:img = film.poster_path
+							:title = film.title
+							:vote = film.vote_average
+							@closeModal = closeModal
+						/>
+
 					</div>
 				</div>
 			</main>
@@ -55,10 +62,12 @@
 <script>
 import axios from 'axios'
 import Header from '@/components/Header.vue'
+import Card from '@/components/Card.vue'
 
 export default {
 components: {
 	Header,
+	Card
 
 
   },	
@@ -103,6 +112,9 @@ methods:{
 	getYear(){
 		this.year = this.filmItem.release_date.split('', 4).join('');
 	},
+	closeModal(){
+		this.showInfo = !this.showInfo
+	}
 
      
 

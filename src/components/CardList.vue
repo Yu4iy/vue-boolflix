@@ -7,15 +7,7 @@
 		<slider ref="slider" :options="options" >
 			<!-- slideritem wrapped package with the components you need -->
 			<slideritem class="slide" v-for="(item,index) in movieList" :key="index" >
-						<Card
-							:img = item.poster_path
-							:Titolo = item.title
-							:TitoloOriginale = item.original_title
-							:Lingua = item.original_language
-							:Voto = item.vote_average
-							:info = item.overview
-
-						/>
+		
 				</slideritem>
 			<!-- Customizable loading -->
 		</slider>
@@ -27,14 +19,7 @@
 		<slider ref="slider" :options="options" >
 			<!-- slideritem wrapped package with the components you need -->
 			<slideritem class="slide" v-for="(item,index) in serialList" :key="index" >
-						<Card
-							:img = item.poster_path
-							:Titolo = item.name
-							:TitoloOriginale = item.original_name
-							:Lingua = item.original_language
-							:Voto = item.vote_average
-							:info = item.overview
-						/>
+
 				</slideritem>
 			<!-- Customizable loading -->
 		</slider>
