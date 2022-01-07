@@ -51,7 +51,7 @@ computed:{
 	.card{
 		flex: 1 0 calc(20% - 30px);
 		max-width: 250px;
-		min-height: 375px;
+		height: 375px;
 		margin: 15px;
 		position: relative;
 		background: rgba(88, 16, 16, 0.377);
@@ -64,8 +64,6 @@ computed:{
 		overflow: hidden;
 		img{
 		width: 100%;
-		height: 100%;
-		height: auto;
 		}
 		.card__vote{
 			display: flex;

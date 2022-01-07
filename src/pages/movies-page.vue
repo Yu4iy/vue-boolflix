@@ -124,6 +124,8 @@ methods:{
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
+	padding: 91px 0 0 0;
+
 	.card{
 		flex: 1 0 calc(20% - 30px);
 		max-width: 250px;
@@ -237,9 +239,9 @@ methods:{
 }
 .more-info-modal{
 	width: 100%;
-	height: calc(100vh - 91px);
+	height: 100vh;
 	position: relative;
-	padding: 40px 0 0 0 ;
+	padding: 141px 0 0 0;
 	&::after{
 		content: '';
 		background: linear-gradient(90deg, rgba(4, 4, 4, 0.918) 50%, rgba(18, 18, 18, 0.76) 66%, rgba(0,0,0,0) 100%);
@@ -282,8 +284,8 @@ methods:{
 	}
 	.close{
 		position: absolute;
-		top: 20px;
-		right: 50px;
+		top: 120px;
+		right: 30px;
 		z-index: 20;
 		transition: linear 0.1s;
 		cursor: pointer;

@@ -6,6 +6,7 @@
 		<Header @search = searchValue />
 
 		<template v-if = showInfo>
+				<h2>SerieTV</h2>
 			<main class="main-serials" v-if='serialList.length > 0  '>
 				<div class="img-wraper">
 					<div @click="getItem(index)" class="card-inner" v-for="(serials, index) in serialList" :key="index">
@@ -118,11 +119,14 @@ methods:{
 @import '@/styles/variables';
 .serial-page{
 	position: relative;
+
 }
 .img-wraper{
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
+	padding: 91px 0 0 0;
+
 
 
 
@@ -142,7 +146,7 @@ methods:{
 }
 .more-info-modal{
 	width: 100%;
-	height: calc(100vh - 91px);
+	height: 100vh;
 	position: relative;
 	padding: 40px 0 0 0 ;
 	&::after{
