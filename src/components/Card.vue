@@ -12,7 +12,7 @@
 		<div class="card__info" >
 			<h2 class="card__title">{{title}}</h2>
 		</div>	
-		<h2  @click="$emit('closeModal')"  class="card__more">Scopri di più</h2>
+		<h2 @click="$router.push({path: `${elem.id}`}),GET_ITEM(elem)"  class="card__more">Scopri di più</h2>
 
 	</div>
 </template>
@@ -23,6 +23,9 @@ props:{
 	title:String,
 	vote:Number,
 	img:String,
+	elem:Object,
+	index:Number
+
 },
 computed:{
 	// flag(){
@@ -34,6 +37,14 @@ computed:{
 	// 	return rating
 		
 	// }
+
+
+},
+methods:{
+	GET_ITEM(elem){
+		console.log(elem);
+		this.$store.dispatch('GET_ITEM', elem)
+	}
 },
  data(){
     return{

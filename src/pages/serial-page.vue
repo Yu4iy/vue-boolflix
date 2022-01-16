@@ -7,21 +7,18 @@
 		<template>
 			<main class="main-serials"  >
 				<div class="img-wraper">
-					<div class="card-inner" v-for="(serials, index) in this.$store.state.serialList" :key="index">
+					<div class="card-inner" v-for="(serial, index) in this.$store.state.serialList" :key="index">
 						<Card
-							:img = serials.poster_path
-							:title = serials.name
-							:vote = serials.vote_average
-						
+							:img = serial.poster_path
+							:title = serial.name
+							:vote = serial.vote_average
+							:elem = serial
+							:index = index 
 						/>
 					</div>
 				</div>
 			</main>
-			
-			<div class="title" >
-				<h3 class="title__text">SerieTV!</h3>
-				<div>SCUSA NON ABBIAMO TROVATO NIENTE</div>
-			</div>
+
 		</template>
 
 	</div>
@@ -30,12 +27,9 @@
 <script>
 
 import Card from '@/components/Card.vue'
-import {mapActions} from 'vuex'
 export default {
 components: {
 	Card
-
-
   },
 computed:{
 
@@ -48,15 +42,10 @@ data(){
 
 
 methods:{
-	...mapActions([
-		'GET_LIST'
-	]),
+
        
   },
-created(){
-this.GET_LIST()
 
-}  
 }
 
 </script>
@@ -78,19 +67,7 @@ this.GET_LIST()
 
 
 }
-.title{
-	display: flex;
-	flex-direction: column;
-	height: 90vh;
-	justify-content: center;
-	align-items: center;
-	color: #fff;
-	.title__text{
-		font-size: 3.5rem;
-	}
 
-
-}
 .more-info-modal{
 	width: 100%;
 	height: 100vh;

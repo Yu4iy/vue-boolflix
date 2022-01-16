@@ -2,11 +2,11 @@
 	<div class="info-page">
 		<div class="container">
 			<ul class="info-page__inner">
-				<li class="info-page__name">TEST FILM</li>
-				<li class="info-page__rating"><span>imdb</span> 9</li>
-				<li><p class="info-page__description">Lorem ipsum dolor lo sit amet consectetur, adipisicing elit. Aperiam modi veniam ullam saepe culpa, alias mollitia eaque dignissimos, adipisci beatae, excepturi vero aliquam illo reprehenderit quae facilis laudantium. Fugiat, sed?</p></li>
-				<li class="info-page__year">Anno: 2012</li>
-				<li class="info-page__lang">Lingua: It</li>
+				<li class="info-page__name">{{this.$store.state.item.name}}</li>
+				<li class="info-page__rating"><span>imdb </span>{{this.$store.state.item.vote_average}}</li>
+				<li><p class="info-page__description">{{this.$store.state.item.overview}}</p></li>
+				<li class="info-page__year">{{this.$store.state.item.first_air_date}}</li>
+				<li class="info-page__lang">Lingua: {{this.$store.state.item.original_language}}</li>
 			</ul>	
 		</div>		
 	</div>

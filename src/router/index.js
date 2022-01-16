@@ -19,21 +19,21 @@ export default new VueRouter({
 			children:
 			[
 				{
-					path: '/serials',
+					path: '/serial',
 					name:'serial-page',
 					component: SerialPage
 				},
-
 				{
-					path: '/movies',
-					name:'movies-page',
-					component: MoviesPage
-				},
-				{
-					path: ':id',
+					path: '/:id',
 					name: 'info-page',
 					component:InfoPage,
 				},	
+				
+				{
+					path: '/',
+					name:'movies-page',
+					component: MoviesPage
+				},
 			]
 		},
 
