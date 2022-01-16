@@ -8,7 +8,7 @@
 		<template v-if = showInfo>
 			<main class="main-serials" v-if='filmList.length > 0  '>
 				<div class="img-wraper">
-					<div @click="getItem(index)" class="card-inner" v-for="(film, index) in filmList" :key="index">
+					<div @click="getItem(index)" class="card-inner" v-for="(film, index) in this.$store.state.serialList" :key="index">
 						<Card
 							:img = film.poster_path
 							:title = film.title
@@ -52,12 +52,10 @@
 
 <script>
 import axios from 'axios'
-import Header from '@/components/Header.vue'
 import Card from '@/components/Card.vue'
 
 export default {
 components: {
-	Header,
 	Card
 
 
@@ -234,13 +232,12 @@ methods:{
 .title{
 	display: flex;
 	flex-direction: column;
-	height: 90vh;
+	height: 100vh;
 	justify-content: center;
 	align-items: center;
 	color: #fff;
 	.title__text{
 		font-size: 3.5rem;
-		margin-left: 20px;
 	}
 
 

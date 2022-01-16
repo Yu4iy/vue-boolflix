@@ -3,8 +3,8 @@
 	<img class="start-page__logo" src="@/assets/log.png" alt="">
 	<button v-show="startBtn" class="start-page__btn" @click="startBtn = !startBtn"  >INIZIA LA RICERCA</button>
 	<div class="start-page__links">
-		<button v-show="!startBtn" @click="$router.push('serials')" href="">SerieTV</button>
-		<button v-show="!startBtn" @click="$router.push('movies')" href="">Films</button>
+		<button class="start-page__btn" v-show="!startBtn" @click="$router.push({name:'serial-page'})" href="">SerieTV</button>
+		<button class="start-page__btn" v-show="!startBtn" @click="$router.push({name:'movies-page'})" href="">Films</button>
 	</div>
   </div>
 </template>
@@ -45,13 +45,14 @@ export default {
 			transition: linear 0.2s;
 			background: transparent;
 			cursor: pointer;
+			min-width: 130px;
 			&:hover{
 				color: white;
 				border: 4px solid rgb(255, 255, 255);
 				background: red;
 			}
 		}
-		.start-page__links a{
+		.start-page__links button{
 			font-weight: 700;
 			color: red;
 			font-size: 20px;
@@ -63,6 +64,7 @@ export default {
 			background: transparent;
 			cursor: pointer;
 			margin: 0 25px 0 0; 
+			
 			&:last-child{
 				margin: 0;
 			}
